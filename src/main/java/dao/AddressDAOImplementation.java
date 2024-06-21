@@ -32,11 +32,11 @@ public class AddressDAOImplementation implements IDaoGeneric<Endereco> {
     }
 
     @Override
-    public int update(Endereco endereco) { //Revisar
+    public int update(Endereco endereco) { //Completo
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement("UPDATE enderecos SET logradouro = ?, tipo_log = ?, complemento = ?, cidade = ?, uf = ?, cep = ?, numero = ?, bairro = ?" +
-                    " WHERE personid = ?");
+                    " WHERE id = ?");
             ps.setString(1, endereco.getLogradouro());
             ps.setString(2, endereco.getTipoLogradouro());
             ps.setString(3, endereco.getComplemento());
@@ -45,6 +45,7 @@ public class AddressDAOImplementation implements IDaoGeneric<Endereco> {
             ps.setString(6, endereco.getCep());
             ps.setString(7, endereco.getNumero());
             ps.setString(8, endereco.getBairro());
+            ps.setInt(9, endereco.getId());
             return ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Erro ao atualizar endereço: " + e.getMessage());
@@ -56,7 +57,7 @@ public class AddressDAOImplementation implements IDaoGeneric<Endereco> {
     public int delete(Endereco endereco) { //Completo
         PreparedStatement ps = null;
         try {
-            ps = con.prepareStatement("Delete from enderecos where personid = ?");
+            ps = con.prepareStatement("Delete from enderecos where id = ?");
             ps.setInt(1, endereco.getId());
             return ps.executeUpdate();
         } catch (SQLException e) {
@@ -88,18 +89,19 @@ public class AddressDAOImplementation implements IDaoGeneric<Endereco> {
     }
 
     @Override
-    public List<Endereco> getAll(Endereco endereco) { //Revisar
-        List<Endereco> enderecos = new ArrayList<>();
+    public List<Endereco> getAll() { //Completo
+        List<Endereco> ends = new ArrayList<Endereco>();
         PreparedStatement ps = null;
+        Endereco endereco = null;
 
         try {
-            ps = con.prepareStatement("select * from enderecos where personid = ?");
-            ps.setInt(1, endereco.getId());
+            ps = con.prepareStatement("select * from enderecos order by id");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+                endereco = new Endereco();
                 endereco.setId(rs.getInt("id"));
                 endereco.setLogradouro(rs.getString("logradouro"));
-                endereco.setTipoLogradouro(rs.getString("tipoLogradouro"));
+                endereco.setTipoLogradouro(rs.getString("tipo_log"));
                 endereco.setComplemento(rs.getString("complemento"));
                 endereco.setCidade(rs.getString("cidade"));
                 endereco.setUf(rs.getString("uf"));
@@ -107,13 +109,11 @@ public class AddressDAOImplementation implements IDaoGeneric<Endereco> {
                 endereco.setNumero(rs.getString("numero"));
                 endereco.setBairro(rs.getString("bairro"));
 
-                enderecos.add(endereco);
+                ends.add(endereco);
             }
-
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("Erro ao consultar tabela " + e.getMessage());
         }
-
-        return List.of();
+        return ends;
     }
 }

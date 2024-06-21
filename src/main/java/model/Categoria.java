@@ -5,7 +5,7 @@ import org.postgresql.util.PGmoney;
 public class Categoria {
     private int id;
     private String nome;
-    private double valor;
+    private double valor; //revisar
 
     public Categoria() {
     }

@@ -9,5 +9,5 @@ public interface IDaoGeneric<T> {
     int update(T object);
     int delete(T object);
     T get(T object);
-    List<T> getAll(T object);
+    List<T> getAll();
 }

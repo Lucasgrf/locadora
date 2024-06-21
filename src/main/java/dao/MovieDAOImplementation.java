@@ -26,7 +26,7 @@ public class MovieDAOImplementation implements IDaoGeneric<Movie> {
     }
 
     @Override
-    public List<Movie> getAll(Movie Movie) {
+    public List<Movie> getAll() {
         return List.of();
     }
 }

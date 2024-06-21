@@ -126,7 +126,6 @@ public class Endereco {
                 ", uf='" + uf + '\'' +
                 ", cep='" + cep + '\'' +
                 ", numero='" + numero + '\'' +
-                ", bairro='" + bairro + '\'' +
-                '}';
+                ", bairro='" + bairro + "}\n" ;
     }
 }

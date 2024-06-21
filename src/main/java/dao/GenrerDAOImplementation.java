@@ -26,7 +26,7 @@ public class GenrerDAOImplementation implements IDaoGeneric<Genero>{
     }
 
     @Override
-    public List<Genero> getAll(Genero genero) {
+    public List<Genero> getAll() {
         return List.of();
     }
 }
