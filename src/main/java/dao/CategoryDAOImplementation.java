@@ -1,87 +1,123 @@
 package dao;
 
 import model.Categoria;
+import model.Endereco;
 import org.postgresql.util.PGmoney;
 
+import java.math.BigDecimal;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
+import static database.DbConnection.con;
 
 public class CategoryDAOImplementation implements IDaoGeneric<Categoria>{
-    private int id;
-    private String nome;
-    private PGmoney valor;
 
-    public CategoryDAOImplementation() {
+    @Override
+    public int create(Categoria categoria) { //Completo
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement("insert into categorias(nome,valor) values (?,?)");
+            ps.setString(1, categoria.getNome());
+            ps.setBigDecimal(2, categoria.getValor());
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Erro ao inserir categoria: " + e.getMessage());
+            return -1;
+        }
     }
 
-    public CategoryDAOImplementation(int id, String nome, PGmoney valor) {
-        this.id = id;
-        this.nome = nome;
-        this.valor = valor;
-    }
-
-    public CategoryDAOImplementation(int id) {
-        this.id = id;
-    }
-
-    public CategoryDAOImplementation(String nome, PGmoney valor) {
-        this.nome = nome;
-        this.valor = valor;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public PGmoney getValor() {
-        return valor;
-    }
-
-    public void setValor(PGmoney valor) {
-        this.valor = valor;
+    private BigDecimal formatarValor(String valor) {
+        NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+        try {
+            Number number = nf.parse(valor);
+            return BigDecimal.valueOf(number.doubleValue());
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return BigDecimal.ZERO; // Retorna 0 caso haja erro na formatação
+        }
     }
 
     @Override
-    public String toString() {
-        return "CategoryDAOImplementation{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", valor=" + valor + "}\n";
-    }
-
-    @Override
-    public int create(Categoria categoria) {
-        return 0;
-    }
-
-    @Override
-    public int update(Categoria categoria) {
+    public int update(Categoria categoria) { //Completo
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement("UPDATE categorias SET nome = ?, valor = ? WHERE id = ?");
+            ps.setString(1, categoria.getNome());
+            ps.setBigDecimal(2, categoria.getValor());
+            ps.setInt(3, categoria.getId());
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Erro ao atualizar categoria: " + e.getMessage());
+        }
         return 0;
     }
 
     @Override
     public int delete(Categoria categoria) {
-        return 0;
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement("Delete from categorias where id = ?");
+            ps.setInt(1, categoria.getId());
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
-    public Categoria get(Categoria categoria) {
-        return null;
+    public Categoria get(Categoria categoria) { //Completo
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement("SELECT * FROM categorias WHERE id = ?");
+            ps.setInt(1, categoria.getId());
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                categoria.setNome(rs.getString("nome"));
+                String valorString = rs.getString("valor").replaceAll("[^0-9.,]", "");
+                valorString = valorString.replace(',', '.');
+                BigDecimal valor = new BigDecimal(valorString);
+                categoria.setValor(valor);
+
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao consultar endereço: " + e.getMessage());
+        }
+        return categoria;
+    }
+
+    private String formatarValorParaString(BigDecimal valor) {
+        NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+        return nf.format(valor);
     }
 
     @Override
     public List<Categoria> getAll() {
-        return List.of();
+        PreparedStatement ps = null;
+        List<Categoria> categorias = new ArrayList<Categoria>();
+        try {
+            ps = con.prepareStatement("SELECT * FROM categorias");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Categoria categoria = new Categoria();
+                categoria.setId(rs.getInt("id"));
+                categoria.setNome(rs.getString("nome"));
+
+                String valorString = rs.getString("valor").replaceAll("[^0-9.,]", "");
+                valorString = valorString.replace(',', '.');
+                BigDecimal valor = new BigDecimal(valorString);
+
+                categoria.setValor(valor);
+                categorias.add(categoria);
+            }
+            return categorias;
+        }catch (SQLException e){
+            throw new RuntimeException("Erro ao obter os dados da tabela. " + e);
+        }
     }
 }

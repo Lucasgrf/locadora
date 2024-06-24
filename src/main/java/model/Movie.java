@@ -5,20 +5,32 @@ public class Movie {
     private String titleOrigin;
     private String tittle;
     private int amount;
-    private Categoria fkCategoria;
-    private Genero fkGenero;
+    private int fkCategoria;
+    private int fkGenero;
 
     public Movie() {
     }
 
     public Movie(int id, String titleOrigin, String tittle, int amount,
-                 Categoria categoria, Genero genero) {
+                 int categoria, int genero) {
         this.id = id;
         this.titleOrigin = titleOrigin;
         this.tittle = tittle;
         this.amount = amount;
         this.fkCategoria = categoria;
         this.fkGenero = genero;
+    }
+
+    public Movie(String titleOrigin, String tittle, int amount, int fkCategoria, int fkGenero) {
+        this.titleOrigin = titleOrigin;
+        this.tittle = tittle;
+        this.amount = amount;
+        this.fkCategoria = fkCategoria;
+        this.fkGenero = fkGenero;
+    }
+
+    public Movie(int id) {
+        this.id = id;
     }
 
     public int getId() {
@@ -53,19 +65,30 @@ public class Movie {
         this.amount = amount;
     }
 
-    public Categoria getCategoria() {
+    public int getFkCategoria() {
         return fkCategoria;
     }
 
-    public void setCategoria(Categoria categoria) {
-        this.fkCategoria = categoria;
+    public void setFkCategoria(int fkCategoria) {
+        this.fkCategoria = fkCategoria;
     }
 
-    public Genero getGenero() {
+    public int getFkGenero() {
         return fkGenero;
     }
 
-    public void setGenero(Genero genero) {
-        this.fkGenero = genero;
+    public void setFkGenero(int fkGenero) {
+        this.fkGenero = fkGenero;
+    }
+
+    @Override
+    public String toString() {
+        return "Filme{" +
+                "id=" + id +
+                ", titleOrigin='" + titleOrigin + '\'' +
+                ", tittle='" + tittle + '\'' +
+                ", amount=" + amount +
+                ", fkCategoria=" + fkCategoria +
+                ", fkGenero=" + fkGenero + "\n";
     }
 }

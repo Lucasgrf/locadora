@@ -1,17 +1,26 @@
 package model;
 
-import org.postgresql.util.PGmoney;
+import java.math.BigDecimal;
 
 public class Categoria {
     private int id;
     private String nome;
-    private double valor; //revisar
+    private BigDecimal valor;
 
     public Categoria() {
     }
 
-    public Categoria(int id, String nome, double valor) {
+    public Categoria(int id) {
         this.id = id;
+    }
+
+    public Categoria(int id, String nome, BigDecimal valor) {
+        this.id = id;
+        this.nome = nome;
+        this.valor = valor;
+    }
+
+    public Categoria(String nome, BigDecimal valor) {
         this.nome = nome;
         this.valor = valor;
     }
@@ -32,11 +41,19 @@ public class Categoria {
         this.nome = nome;
     }
 
-    public double getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(BigDecimal valor) {
         this.valor = valor;
+    }
+
+    @Override
+    public String toString() {
+        return "Categoria{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", valor=" + valor + "\n";
     }
 }
