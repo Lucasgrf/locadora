@@ -30,17 +30,6 @@ public class CategoriaDAO implements IDaoGeneric<Categoria>{
         }
     }
 
-    private BigDecimal formatarValor(String valor) {
-        NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
-        try {
-            Number number = nf.parse(valor);
-            return BigDecimal.valueOf(number.doubleValue());
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return BigDecimal.ZERO; // Retorna 0 caso haja erro na formatação
-        }
-    }
-
     @Override
     public int update(Categoria categoria) { //Completo
         PreparedStatement ps = null;
@@ -87,11 +76,6 @@ public class CategoriaDAO implements IDaoGeneric<Categoria>{
             System.out.println("Erro ao consultar categoria: " + e.getMessage());
         }
         return categoria;
-    }
-
-    private String formatarValorParaString(BigDecimal valor) {
-        NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
-        return nf.format(valor);
     }
 
     @Override
