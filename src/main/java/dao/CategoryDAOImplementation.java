@@ -86,7 +86,7 @@ public class CategoryDAOImplementation implements IDaoGeneric<Categoria>{
 
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao consultar endereço: " + e.getMessage());
+            System.out.println("Erro ao consultar categoria: " + e.getMessage());
         }
         return categoria;
     }
