@@ -1,8 +1,6 @@
 package dao;
 
 import model.Categoria;
-import model.Endereco;
-import org.postgresql.util.PGmoney;
 
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
@@ -16,7 +14,7 @@ import java.util.Locale;
 
 import static database.DbConnection.con;
 
-public class CategoryDAOImplementation implements IDaoGeneric<Categoria>{
+public class CategoriaDAO implements IDaoGeneric<Categoria>{
 
     @Override
     public int create(Categoria categoria) { //Completo

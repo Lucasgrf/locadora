@@ -1,16 +1,6 @@
 package main;
 
-import dao.AddressDAOImplementation;
-import dao.CategoryDAOImplementation;
-import dao.GenrerDAOImplementation;
-import dao.MovieDAOImplementation;
 import database.DbConnection;
-import model.Categoria;
-import model.Endereco;
-import model.Genero;
-import model.Movie;
-
-import java.math.BigDecimal;
 
 public class Main {
     public static void main(String[] args) {

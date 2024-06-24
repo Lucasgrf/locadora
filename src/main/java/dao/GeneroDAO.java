@@ -1,6 +1,5 @@
 package dao;
 
-import model.Endereco;
 import model.Genero;
 
 import java.sql.PreparedStatement;
@@ -11,7 +10,7 @@ import java.util.List;
 
 import static database.DbConnection.con;
 
-public class GenrerDAOImplementation implements IDaoGeneric<Genero>{
+public class GeneroDAO implements IDaoGeneric<Genero>{
     @Override
     public int create(Genero genero) { //Completo
         PreparedStatement ps = null;

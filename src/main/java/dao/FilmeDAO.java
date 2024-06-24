@@ -1,8 +1,5 @@
 package dao;
 
-import model.Categoria;
-import model.Endereco;
-import model.Genero;
 import model.Movie;
 
 import java.sql.PreparedStatement;
@@ -13,7 +10,7 @@ import java.util.List;
 
 import static database.DbConnection.con;
 
-public class MovieDAOImplementation implements IDaoGeneric<Movie> {
+public class FilmeDAO implements IDaoGeneric<Movie> {
     @Override
     public int create(Movie movie) { //Completo
         PreparedStatement ps = null;

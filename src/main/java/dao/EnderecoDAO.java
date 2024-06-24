@@ -10,7 +10,7 @@ import java.util.List;
 
 import static database.DbConnection.con;
 
-public class AddressDAOImplementation implements IDaoGeneric<Endereco> {
+public class EnderecoDAO implements IDaoGeneric<Endereco> {
     @Override
     public int create(Endereco endereco) { //Completo
         PreparedStatement ps = null;
