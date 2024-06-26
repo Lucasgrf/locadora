@@ -70,7 +70,6 @@ public class CategoriaDAO implements IDaoGeneric<Categoria>{
                 valorString = valorString.replace(',', '.');
                 BigDecimal valor = new BigDecimal(valorString);
                 categoria.setValor(valor);
-
             }
         } catch (SQLException e) {
             System.out.println("Erro ao consultar categoria: " + e.getMessage());

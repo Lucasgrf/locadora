@@ -1,12 +1,22 @@
 package main;
 
+import dao.CategoriaDAO;
+import dao.EnderecoDAO;
+import dao.FilmeDAO;
+import dao.GeneroDAO;
 import database.DbConnection;
+import model.Categoria;
+import model.Endereco;
+import model.Genero;
+import model.Movie;
+
+import java.math.BigDecimal;
 
 public class Main {
     public static void main(String[] args) {
         DbConnection.getConnection();
 
-        /*AddressDAOImplementation adressDAO = new AddressDAOImplementation();
+        /*EnderecoDAO adressDAO = new EnderecoDAO();
         adressDAO.create(new Endereco("Rua Fictícia", "Rua", "Apto 101", "Cidade Exemplo", "EX", "12345-678", "100", "Bairro Exemplo"));
         System.out.println(adressDAO.get(new Endereco(11)));
         System.out.println(adressDAO.getAll());
@@ -16,7 +26,7 @@ public class Main {
         adressDAO.delete(new Endereco(12));
         System.out.println(adressDAO.getAll());*/
 
-        /*CategoryDAOImplementation categoryDAO = new CategoryDAOImplementation();
+        /*CategoriaDAO categoryDAO = new CategoriaDAO();
         BigDecimal bd = BigDecimal.valueOf(50.0);
         categoryDAO.create(new Categoria("Adulto", bd));
         categoryDAO.update(new Categoria(17, "Juvenil",bd));
@@ -29,19 +39,19 @@ public class Main {
         System.out.println(categoryDAO.get(new Categoria(1)));
         System.out.println(categoryDAO.getAll());*/
 
-        /*GenrerDAOImplementation genrerDAO = new GenrerDAOImplementation();
+        /*GeneroDAO genrerDAO = new GeneroDAO();
         genrerDAO.create(new Genero("Policial"));
         genrerDAO.update(new Genero(11,"Investigação"));
         genrerDAO.delete(new Genero(12));
         System.out.println(genrerDAO.get(new Genero(10)));
         System.out.println(genrerDAO.getAll());*/
 
-        /*MovieDAOImplementation movieDAO = new MovieDAOImplementation();
-        movieDAO.create(new Movie("Saw - Enigma Mortal","Jogos mortais",10,2,4));
-        movieDAO.update(new Movie(24,"Panic! 9", "Pânico! 9", 10, 2,4));
-        movieDAO.delete(new Movie(24));
-        System.out.println(movieDAO.get(new Movie(1)));
-        System.out.println(movieDAO.getAll());*/
+        FilmeDAO fDao = new FilmeDAO();
+        /*fDao.create(new Movie("Saw - Enigma Mortal","Jogos mortais",10,2,4));
+        fDao.update(new Movie(24,"Panic! 9", "Pânico! 9", 10, 2,4));
+        fDao.delete(new Movie(24));
+        System.out.println(fDao.get(new Movie(1)));*/
+        System.out.println(fDao.getAll());
 
 
 

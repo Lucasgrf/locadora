@@ -5,28 +5,28 @@ public class Movie {
     private String titleOrigin;
     private String tittle;
     private int amount;
-    private int fkCategoria;
-    private int fkGenero;
+    private Categoria categoria;
+    private Genero genero;
 
     public Movie() {
     }
 
     public Movie(int id, String titleOrigin, String tittle, int amount,
-                 int categoria, int genero) {
+                 Categoria categoria, Genero genero) {
         this.id = id;
         this.titleOrigin = titleOrigin;
         this.tittle = tittle;
         this.amount = amount;
-        this.fkCategoria = categoria;
-        this.fkGenero = genero;
+        this.categoria = categoria;
+        this.genero = genero;
     }
 
-    public Movie(String titleOrigin, String tittle, int amount, int fkCategoria, int fkGenero) {
+    public Movie(String titleOrigin, String tittle, int amount, Categoria categoria, Genero genero) {
         this.titleOrigin = titleOrigin;
         this.tittle = tittle;
         this.amount = amount;
-        this.fkCategoria = fkCategoria;
-        this.fkGenero = fkGenero;
+        this.categoria = categoria;
+        this.genero = genero;
     }
 
     public Movie(int id) {
@@ -65,20 +65,20 @@ public class Movie {
         this.amount = amount;
     }
 
-    public int getFkCategoria() {
-        return fkCategoria;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public void setFkCategoria(int fkCategoria) {
-        this.fkCategoria = fkCategoria;
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
-    public int getFkGenero() {
-        return fkGenero;
+    public Genero getGenero() {
+        return genero;
     }
 
-    public void setFkGenero(int fkGenero) {
-        this.fkGenero = fkGenero;
+    public void setGenero(Genero genero) {
+        this.genero = genero;
     }
 
     @Override
@@ -88,7 +88,7 @@ public class Movie {
                 ", titleOrigin='" + titleOrigin + '\'' +
                 ", tittle='" + tittle + '\'' +
                 ", amount=" + amount +
-                ", fkCategoria=" + fkCategoria +
-                ", fkGenero=" + fkGenero + "\n";
+                ", categoria=" + categoria +
+                ", genero=" + genero + "\n";
     }
 }
