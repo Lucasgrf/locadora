@@ -117,15 +117,15 @@ public class Endereco {
 
     @Override
     public String toString() {
-        return "Endereco{" +
-                "id=" + id +
-                ", logradouro='" + logradouro + '\'' +
-                ", tipoLogradouro='" + tipoLogradouro + '\'' +
-                ", complemento='" + complemento + '\'' +
-                ", cidade='" + cidade + '\'' +
-                ", uf='" + uf + '\'' +
-                ", cep='" + cep + '\'' +
-                ", numero='" + numero + '\'' +
-                ", bairro='" + bairro + "}\n" ;
+        return "Endereco: " +
+                "\nID: " + id +
+                "\nLogradouro: " + logradouro +
+                "\nTipo_Logradouro: " + tipoLogradouro +
+                "\nComplemento='" + complemento +
+                "\nCidade='" + cidade +
+                "\nUF: " + uf +
+                "\nCep='" + cep +
+                "\nNumero: " + numero +
+                "Bairro: " + bairro + "\n" ;
     }
 }

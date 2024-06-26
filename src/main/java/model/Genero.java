@@ -37,8 +37,8 @@ public class Genero {
 
     @Override
     public String toString() {
-        return "Genero{" +
-                "id=" + id +
-                ", nome='" + nome + "\n";
+        return "Genero: \n" +
+                "ID: " + id +
+                " | Nome: " + nome + "\n";
     }
 }

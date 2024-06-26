@@ -1,5 +1,6 @@
 package model;
 
+
 public class Movie {
     private int id;
     private String titleOrigin;
@@ -7,6 +8,7 @@ public class Movie {
     private int amount;
     private Categoria categoria;
     private Genero genero;
+    private static int contador;
 
     public Movie() {
     }
@@ -83,12 +85,13 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "Filme{" +
-                "id=" + id +
-                ", titleOrigin='" + titleOrigin + '\'' +
-                ", tittle='" + tittle + '\'' +
-                ", amount=" + amount +
-                ", categoria=" + categoria +
-                ", genero=" + genero + "\n";
+        contador++;
+        return "Filme: " + String.format("%02d", contador) +
+                "\nID: " + id +
+                " | Título Original: " + titleOrigin +
+                " | Título: " + tittle +
+                " | Quantidade: " + amount +
+                "\n" + categoria +
+                " " + genero + "\n";
     }
 }
