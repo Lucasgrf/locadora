@@ -6,6 +6,7 @@ public class Categoria {
     private int id;
     private String nome;
     private BigDecimal valor;
+    private static int contador;
 
     public Categoria() {
     }
@@ -51,8 +52,9 @@ public class Categoria {
 
     @Override
     public String toString() {
-        return "Categoria: \n" +
-                "ID: " + id +
+        contador++;
+        return "Categoria: " + String.format("%02d",contador) +
+                "\nID: " + id +
                 " | Nome: " + nome +
                 " | Valor: " + valor + "\n";
     }

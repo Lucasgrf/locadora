@@ -1,5 +1,6 @@
 package model;
 
+
 public class Endereco {
     private int id;
     private String logradouro;
@@ -10,6 +11,7 @@ public class Endereco {
     private String cep;
     private String numero;
     private String bairro;
+    private static int contador;
 
     public Endereco() {
     }
@@ -117,15 +119,16 @@ public class Endereco {
 
     @Override
     public String toString() {
-        return "Endereco: " +
+        contador++;
+        return "Endereco: " + String.format("%02d",contador) +
                 "\nID: " + id +
-                "\nLogradouro: " + logradouro +
-                "\nTipo_Logradouro: " + tipoLogradouro +
-                "\nComplemento='" + complemento +
-                "\nCidade='" + cidade +
-                "\nUF: " + uf +
-                "\nCep='" + cep +
-                "\nNumero: " + numero +
-                "Bairro: " + bairro + "\n" ;
+                " | Logradouro: " + logradouro +
+                " | Tipo_Logradouro: " + tipoLogradouro +
+                " | Complemento='" + complemento +
+                " | Cidade='" + cidade +
+                " | UF: " + uf +
+                " | Cep='" + cep +
+                " | Numero: " + numero +
+                " | Bairro: " + bairro + "\n" ;
     }
 }

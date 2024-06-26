@@ -3,6 +3,7 @@ package model;
 public class Genero {
     private int id;
     private String nome;
+    private static int contador;
 
     public Genero() {
     }
@@ -37,8 +38,9 @@ public class Genero {
 
     @Override
     public String toString() {
-        return "Genero: \n" +
-                "ID: " + id +
+        contador++;
+        return "Genero: " + String.format("%02d",contador) +
+                "\nID: " + id +
                 " | Nome: " + nome + "\n";
     }
 }
